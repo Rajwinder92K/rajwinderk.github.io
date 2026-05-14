@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajwinder Kaur — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1410;
+    --ink2: #4a3f35;
+    --ink3: #8a7f74;
+    --parchment: #faf7f2;
+    --cream: #f0ebe2;
+    --gold: #b8924a;
+    --gold-light: #e8d4b0;
+    --gold-pale: #f7f0e3;
+    --border: #ddd5c8;
+    --accent: #5c3d2e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--accent); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink2); text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 6rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(184,146,74,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--ink); margin-bottom: 0.3rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: var(--ink3); font-weight: 300; margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-desc {
+    max-width: 600px; color: var(--ink2); font-size: 15px;
+    line-height: 1.8; margin-bottom: 3rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 13px 32px; border-radius: 2px;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold); }
+  .btn-outline {
+    border: 1px solid var(--border); color: var(--ink2);
+    padding: 13px 32px; border-radius: 2px;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500; transition: all 0.2s;
+    background: transparent;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    position: absolute; right: 6rem; bottom: 6rem;
+    display: flex; flex-direction: column; gap: 2rem; text-align: right;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 600; color: var(--accent); line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink3);
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 6rem; }
+  .section-tag {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem; font-weight: 500;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-tag::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.2;
+    margin-bottom: 3rem; color: var(--ink);
+  }
+  h2 em { font-style: italic; color: var(--accent); }
+
+  /* SERVICES */
+  #services { background: var(--cream); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border);
+  }
+  .service-card {
+    background: var(--cream); padding: 2.5rem;
+    transition: background 0.2s;
+  }
+  .service-card:hover { background: #fff; }
+  .service-icon {
+    width: 40px; height: 40px; margin-bottom: 1.5rem;
+    background: var(--gold-pale); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+  .service-card p { font-size: 14px; color: var(--ink2); line-height: 1.7; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--parchment); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 190px; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 0 3rem; margin-bottom: 3.5rem; position: relative;
+  }
+  .tl-date {
+    text-align: right; padding-top: 0.15rem;
+    font-size: 12px; color: var(--ink3); letter-spacing: 0.05em; line-height: 1.5;
+  }
+  .tl-dot {
+    position: absolute; left: 185px; top: 0.4rem;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--parchment); border: 2px solid var(--gold);
+    transform: translateX(-50%);
+  }
+  .tl-content { padding-left: 1rem; }
+  .tl-company {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem; font-weight: 500;
+  }
+  .tl-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .tl-bullets { list-style: none; }
+  .tl-bullets li {
+    font-size: 14px; color: var(--ink2); line-height: 1.7;
+    padding-left: 1.2rem; position: relative; margin-bottom: 0.4rem;
+  }
+  .tl-bullets li::before {
+    content: '—'; position: absolute; left: 0; color: var(--gold);
+    font-size: 12px; top: 0.05rem;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--accent); color: #fff; }
+  #skills .section-tag { color: var(--gold-light); }
+  #skills .section-tag::before { background: var(--gold-light); }
+  #skills h2 { color: #fff; }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+  }
+  .skill-pill {
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 2px;
+    padding: 1rem 1.25rem;
+    font-size: 14px; color: rgba(255,255,255,0.85);
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .skill-pill:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--gold-light); color: #fff;
+  }
+  .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* INSTAGRAM */
+  #instagram { background: var(--cream); }
+  .insta-block {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .insta-stat-row {
+    display: flex; gap: 3rem; margin-bottom: 2.5rem;
+  }
+  .insta-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 600; color: var(--accent); line-height: 1;
+  }
+  .insta-stat .lbl { font-size: 12px; color: var(--ink3); letter-spacing: 0.08em; text-transform: uppercase; }
+  .insta-services { list-style: none; }
+  .insta-services li {
+    border-bottom: 1px solid var(--border); padding: 0.85rem 0;
+    font-size: 14px; color: var(--ink2);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .insta-services li::before { content: '→'; color: var(--gold); font-size: 13px; }
+  .insta-right {
+    background: var(--parchment); border: 1px solid var(--border);
+    padding: 2.5rem; position: relative;
+  }
+  .insta-handle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-style: italic; color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .insta-bio { font-size: 14px; color: var(--ink2); line-height: 1.8; margin-bottom: 1.5rem; }
+  .insta-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; font-weight: 500;
+  }
+  .insta-link:hover { color: var(--accent); }
+
+  /* EDUCATION */
+  #education { background: var(--parchment); }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    border: 1px solid var(--border); padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--gold);
+  }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .edu-school { font-size: 14px; color: var(--ink2); margin-bottom: 0.3rem; }
+  .edu-meta { font-size: 12px; color: var(--ink3); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--ink); color: #fff;
+    text-align: center; padding: 6rem;
+  }
+  #contact .section-tag { justify-content: center; color: var(--gold); }
+  #contact .section-tag::before { display: none; }
+  #contact h2 { color: #fff; }
+  .contact-links {
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); text-decoration: none; font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 2rem 6rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em;
+  }
+  .footer-note { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag { animation: fadeUp 0.6s ease both; }
+  h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-subtitle { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-desc { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-cta { animation: fadeUp 0.6s 0.4s ease both; }
+  .hero-stats { animation: fadeUp 0.6s 0.5s ease both; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 80px 2rem 4rem; }
+    .hero-stats { position: static; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; margin-top: 3rem; }
+    section { padding: 4rem 2rem; }
+    .timeline::before { left: 0; }
+    .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .tl-date { text-align: left; }
+    .tl-dot { left: -5px; }
+    .tl-content { padding-left: 0; padding-top: 1rem; }
+    .insta-block { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem; }
+    #contact { padding: 4rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Rajwinder Kaur</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#instagram">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-tag">Immigration Consultant & Content Writer</div>
+  <h1>Rajwinder<br><em>Kaur</em></h1>
+  <p class="hero-subtitle">Visa Filing Officer · SOP Specialist · Digital Creator</p>
+  <p class="hero-desc">
+    6+ years of expertise in immigration consulting, student visa processing, and strategic SOP writing — helping students and families navigate global borders with clarity and confidence.
+  </p>
+  <div class="hero-cta">
+    <a href="#services" class="btn-primary">View Services</a>
+    <a href="#contact" class="btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">14.1K</div>
+      <div class="stat-label">Instagram Followers</div>
+    </div>
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Countries Covered</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What I Offer</div>
+  <h2>Expertise <em>& Services</em></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🌏</div>
+      <h3>Visa Filing & Consulting</h3>
+      <p>End-to-end visa application management for Canada, Australia, USA, and UK — from documentation to post-visa support.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✍️</div>
+      <h3>SOP & LOE Writing</h3>
+      <p>Compelling Statements of Purpose, Letters of Explanation for refusal cases, and Visitor Visa Cover Letters tailored to individual profiles.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📝</div>
+      <h3>Content Writing</h3>
+      <p>Professional content writing services including LORs, resumes, scholarship essays, justification letters, and research proposals.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>Student Advising</h3>
+      <p>Guiding students through GIC setup, biometrics scheduling, medical appointments, and the GTE process for a smooth journey abroad.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💼</div>
+      <h3>Client Relationship Management</h3>
+      <p>Consistent, transparent communication and record management to keep clients informed through every step of the immigration process.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3>Digital Product Creation</h3>
+      <p>Design and selling of digital products including children's coloring books and e-commerce content for online platforms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Career Journey</div>
+  <h2>Professional <em>Experience</em></h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">June 2024 — Present</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-company">Study Planet Education & Immigration Services Pvt. Ltd., Jalandhar</div>
+        <div class="tl-role">Relationship Manager & Visa Filing Officer</div>
+        <ul class="tl-bullets">
+          <li>Guide students and clients through visa options for Canada, Australia, USA, and the UK.</li>
+          <li>Handle complete visa application process including documentation, form submission, status tracking, and post-visa services.</li>
+          <li>Draft high-quality SOPs, LOEs for refusal cases, and Visitor Visa Cover Letters.</li>
+          <li>Stay updated on global immigration policies to ensure informed guidance.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Oct 2022 — May 2024</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-company">Beyond Visa, Jalandhar</div>
+        <div class="tl-role">Student Success Executive</div>
+        <ul class="tl-bullets">
+          <li>Assisted students with visa documentation, file preparation, and submission.</li>
+          <li>Arranged medical appointments, GIC accounts, and biometrics scheduling.</li>
+          <li>Specialized in SOP writing and comprehensive post-visa services.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Jan 2021 — Oct 2022</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-company">Apply Abroad Consultants, Jalandhar</div>
+        <div class="tl-role">Visa Filing Officer — Canada & Australia</div>
+        <ul class="tl-bullets">
+          <li>Provided complete support for student visa applications to Canada and Australia.</li>
+          <li>Guided students through the GTE (Genuine Temporary Entrant) process.</li>
+          <li>Managed end-to-end file processing including SOP drafting and online submissions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">May 2019 — Nov 2020</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-company">Milestone Education Group, Jalandhar</div>
+        <div class="tl-role">Visa Filing Officer — Canada</div>
+        <ul class="tl-bullets">
+          <li>Oversaw visa filing process, ensuring accurate and timely submissions.</li>
+          <li>Supported students with GIC account setup, medicals, and biometrics scheduling.</li>
+          <li>Drafted customized SOPs aligned with visa requirements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">May 2018 — Apr 2019</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-company">The Knowledge Academy, Jalandhar</div>
+        <div class="tl-role">Event Coordinator</div>
+        <ul class="tl-bullets">
+          <li>Interfaced with clients to determine event needs and coordinate logistics.</li>
+          <li>Handled venue bookings, travel, and accommodation planning.</li>
+          <li>Ensured events were organized within budget to maximize profitability.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Jun 2013 — May 2016</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-company">Mind Trek College, Jalandhar</div>
+        <div class="tl-role">Computer Teacher</div>
+        <ul class="tl-bullets">
+          <li>Taught foundational computer subjects to college-level students.</li>
+          <li>Developed lesson plans and conducted practical sessions.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Competencies</div>
+  <h2>Skills & <em>Strengths</em></h2>
+  <div class="skills-grid">
+    <div class="skill-pill"><span class="skill-dot"></span>Visa Filing & Immigration Consulting</div>
+    <div class="skill-pill"><span class="skill-dot"></span>SOP, LOE & Cover Letter Writing</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Client Relationship Management</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Documentation & File Processing</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Team Collaboration & Coordination</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Copywriting & Content Creation</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Time Management</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Event Coordination</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Digital Product Creation</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Detail-Oriented & Organised</div>
+    <div class="skill-pill"><span class="skill-dot"></span>E-commerce & Online Selling</div>
+    <div class="skill-pill"><span class="skill-dot"></span>Quick Learner & Optimistic</div>
+  </div>
+</section>
+
+<!-- INSTAGRAM / WRITING -->
+<section id="instagram">
+  <div class="section-tag">Jessica's Wordflow</div>
+  <h2>Writing <em>Services</em></h2>
+  <div class="insta-block">
+    <div>
+      <div class="insta-stat-row">
+        <div class="insta-stat">
+          <div class="num">14.1K</div>
+          <div class="lbl">Followers</div>
+        </div>
+        <div class="insta-stat">
+          <div class="num">655</div>
+          <div class="lbl">Posts</div>
+        </div>
+      </div>
+      <p style="color:var(--ink2); font-size:15px; margin-bottom:1.5rem; line-height:1.8;">
+        Under the brand <strong>Jessica's Wordflow</strong>, I offer professional writing services for students and professionals navigating academia and immigration.
+      </p>
+      <ul class="insta-services">
+        <li>Statement of Purpose (SOP)</li>
+        <li>Letter of Recommendation (LOR)</li>
+        <li>Resume & CV Writing</li>
+        <li>Visitor Cover Letters</li>
+        <li>Scholarship Essays</li>
+        <li>Justification Letters for Refusal Cases</li>
+        <li>Research Proposals</li>
+      </ul>
+    </div>
+    <div class="insta-right">
+      <div class="insta-handle">@jessica_wordflow</div>
+      <p class="insta-bio">
+        Writing Service — professional content writing services helping students and applicants present their best selves through powerful, tailored documents.
+      </p>
+      <a class="insta-link" href="https://www.instagram.com/jessica_wordflow" target="_blank">
+        Visit on Instagram →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-tag">Academic Background</div>
+  <h2><em>Education</em></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor of Computer Applications</div>
+      <div class="edu-school">DAV College, Jalandhar</div>
+      <div class="edu-meta">2010 – 2013 &nbsp;·&nbsp; 57%</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Senior Secondary Certificate (CBSE)</div>
+      <div class="edu-school">Kendriya Vidyalaya Suranussi, Jalandhar</div>
+      <div class="edu-meta">2009 – 2010 &nbsp;·&nbsp; 71%</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Let's Connect</div>
+  <h2>Ready to <em>work together?</em></h2>
+  <p style="color:rgba(255,255,255,0.6); max-width:480px; margin:0 auto; font-size:15px; line-height:1.8;">
+    Whether you need visa guidance, a compelling SOP, or professional writing services — reach out and let's make it happen.
+  </p>
+  <div class="contact-links">
+    <a class="contact-link" href="https://www.linkedin.com/in/rajwinder-kaur-77629b177/" target="_blank">LinkedIn Profile →</a>
+    <a class="contact-link" href="https://www.instagram.com/jessica_wordflow" target="_blank">@jessica_wordflow →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Rajwinder Kaur</div>
+  <div class="footer-note">Visa Filing Officer · SOP Specialist · Content Writer · Jalandhar, India</div>
+</footer>
+
+</body>
+</html>
